@@ -1,0 +1,56 @@
+<html>
+    <head> 
+        <script type="text/javascript" src="https://talkgadget.google.com/talkgadget/channel.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    </head>
+    <body >
+        <script>
+            openChannel = function () {
+
+                var emailId = document.getElementById("emailId").value;
+
+                var url = 'http://channel-api-1.appspot.com/createchannel';
+
+                $.post(url, {userId: emailId},
+                function (data, status) {
+                    var token = data;
+                    console.log("Recieved Token : " + token);
+                    var channel = new goog.appengine.Channel(token);
+                    var socket = channel.open();
+                    socket.onopen = function () {
+                        alert('open');
+                    };
+                    socket.onmessage = function (responseData) {
+                        alert('Server Messge : ' + responseData.data);
+                        console.log(responseData)
+                    };
+                    socket.onerror = function () {
+                        alert('error');
+                    };
+                    socket.onclose = function () {
+                        alert('close');
+                    };
+                });
+
+            };
+
+            sendMessage = function () {
+                var url = 'http://channel-api-1.appspot.com/sendmessage';
+
+                var messageToId = document.getElementById("messageToId").value;
+                var message = document.getElementById("message").value;
+
+                $.post(url, {messageToId: messageToId,message:message},
+                function (data, status) {
+                });
+            };
+        </script>
+
+        Enter Email to create Channel : <input type="text" id="emailId">
+        <button onclick="openChannel()">Open Connection</button> <br><br><br>
+
+        Email of registered user to Send Message: <input type="text" id="messageToId"><br><br>
+        Message to send : <input type="text" id="message">
+        <button onclick="sendMessage()">Send Message</button>
+    </body>
+</html>
