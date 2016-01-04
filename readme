@@ -1,0 +1,19 @@
+To run this example you have to deploy first.
+
+Then run using 
+
+your_app_id.appspot.com
+
+REGISTER USER:
+
+Provide email to recieve and send messages to other registred user.
+By clicking Open Connection button browser will hit a post url with your entered User Id.
+On server side a channel token will get created and saved in datastore corresponding to provided user id.
+
+
+SEND MESSAGE :
+
+Provide registered user id and message to send message.
+By clicking Send Message button browser will hit the post request url with user id and message.
+On Server side, datastore will be searched to get the token of provided user id and message will be sent to the provided id.
+
