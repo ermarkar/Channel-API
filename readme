@@ -1,7 +1,7 @@
 Prerequisites :
 
 1) To run this example you have to deploy first.
-2) Change line no. 12 in index.html 
+2) Change line no. 12 and 38 in index.html like
 
 var url = 'http://channel-api-1.appspot.com/createchannel';
 to
