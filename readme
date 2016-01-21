@@ -1,4 +1,14 @@
-To run this example you have to deploy first.
+Prerequisites :
+
+1) To run this example you have to deploy first.
+2) Change line no. 12 in index.html 
+
+var url = 'http://channel-api-1.appspot.com/createchannel';
+to
+var url = 'http://your_application_id.appspot.com/createchannel';
+
+
+RUN :
 
 Then run using 
 
