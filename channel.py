@@ -9,6 +9,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 import logging
 from google.appengine.ext import db
 
+#datastore class to save channel token coreesoinding to registered user
 class User(db.Model):
   email = db.StringProperty()
   channelToken = db.StringProperty()
@@ -20,8 +21,8 @@ class SendMessage(webapp.RequestHandler):
         
         if message == '': # message field of send_message can't be empty
             message = " "
-        user_k = db.Key.from_path('User', messageToId)
-        user = db.get(user_k)
+        user_k = db.Key.from_path('User', messageToId) # get keys based on key_name 
+        user = db.get(user_k) # get object of User class based on searched key_name
         
         channel.send_message(user.channelToken,message)
         
